@@ -1,0 +1,1 @@
+secrets = { 'ssid' : "picow", 'password' : "987654321"}
