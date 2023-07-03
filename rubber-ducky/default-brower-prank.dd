@@ -8,3 +8,7 @@ DELAY 1000
 REM Type the command to open the default browser and search the link
 STRING start "" "https://www.youtube.com/shorts/qMtbnfr_67U"
 ENTER
+DELAY 100
+TAB
+DELAY 100
+ENTER
