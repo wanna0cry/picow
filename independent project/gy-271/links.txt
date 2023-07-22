@@ -1,0 +1,1 @@
+https://peppe8o.com/magnetometer-compass-with-raspberry-pi-pico-gy-271-hmc5883l-wiring-and-use-with-micropython/
